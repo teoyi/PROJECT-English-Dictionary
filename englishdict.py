@@ -4,10 +4,10 @@ import os
 def title():
     print('''
     Welcome to the dictionary!
-    Type in the word you are searching for when prompted!
-    Input x if you would like to exit the application!
+    - Type in the word you are searching for when prompted!
+    - Input x if you would like to exit the application!
     ''')
-
+title()
 ###
 ### Loading dictionary file that contains words in key and value format
 ###
@@ -21,17 +21,32 @@ dict = json.load(f)
 ###
 ### Input/output
 ###
-#
-# searching = True
-# while searching:
-#     # User Input
-#     word = input('\nWhat would you like to search?: ')
-#     if word == 'x':
-#         exit()
-#     else:
-#         print(dict[word.lower()])
-#         break
-#
-# finish = True
-# while finish:
-#     choice = input('\nWould you like to search another word? (Y/N) : ')
+
+searching = True
+while searching:
+    # User Input
+    word = input('\nWhat would you like to search?: ')
+    if word == 'x':
+        print('\nThank you for using this dictionary!')
+        print('\nExiting Dicitonary...')
+        searching = False
+        exit()
+    elif word in dict:
+        print(dict[word.lower()])
+    else:
+        print('Sorry, the word you are looking for is not in the dictionary!')
+
+    restart = True
+    while restart:
+        choice = input('\nWould you like to search another word? (Y/N) : ')
+        if choice.lower() == 'y':
+            break
+        elif choice.lower() == 'n':
+            print('\nThank you for using this dictionary!')
+            print('\nExiting Dicitonary...')
+            searching = False
+            exit()
+        else:
+            print('\nSorry, that is an invalid input. \nPlease try again!')
+            continue
+    continue
